@@ -8,7 +8,6 @@ Pypi fork is available under [django-simple-sso.naudit](https://pypi.org/project
 
 ![PyPI - Version](https://img.shields.io/pypi/v/django-simple-sso.naudit)
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/naudit/django-simple-sso/publish-to-test-pypi.yml)
- |coverage|
 
 
 Documentation
@@ -17,7 +16,6 @@ Documentation
 See ``REQUIREMENTS`` in the [setup.py](https://github.com/Naudit/django-simple-sso/blob/master/setup.py) file for additional dependencies:
 
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/django-simple-sso.naudit)
- |django|
 
 
 Django Simple SSO Specification (DRAFT)
@@ -239,15 +237,3 @@ You can run tests by executing::
     pip install -r tests/requirements.txt
     python setup.py test
 
-
-.. |pypi| image:: https://badge.fury.io/py/django-simple.sso.svg
-    :target: http://badge.fury.io/py/django-simple.sso
-.. |build| image:: https://travis-ci.org/divio/django-simple.sso.svg?branch=master
-    :target: https://travis-ci.org/divio/django-simple.sso
-.. |coverage| image:: https://codecov.io/gh/divio/django-simple.sso/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/divio/django-simple.sso
-
-.. |python| image:: https://img.shields.io/badge/python-3.5+-blue.svg
-    :target: https://pypi.org/project/django-simple.sso/
-.. |django| image:: https://img.shields.io/badge/django-2.2,%203.0,%203.1-blue.svg
-    :target: https://www.djangoproject.com/

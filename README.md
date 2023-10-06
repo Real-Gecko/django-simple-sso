@@ -1,21 +1,23 @@
-=================
-django-simple-sso
-=================
+django-simple-sso.naudit
+========================
 
-This repository is a trivial fork from [divio/django-simple-sso](https://github.com/divio/django-simple-sso).
-The intention of this fork is to keep all the changes up to date on the pypi repository in an automated way.
-Any (code) change performed on this repository would be transformed into a PR on [divio/django-simple-sso](https://github.com/divio/django-simple-sso).
+This repository is a fork from [divio/django-simple-sso](https://github.com/divio/django-simple-sso).
+As reported in issue [#63](https://github.com/divio/django-simple-sso/pull/63#issuecomment-1750451854), the original repository is not maintained anymore.
 
-|pypi| |build| |coverage|
+Pypi fork is available under [django-simple-sso.naudit](https://pypi.org/project/django-simple-sso.naudit/).
+
+![PyPI - Version](https://img.shields.io/pypi/v/django-simple-sso.naudit)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/naudit/django-simple-sso/publish-to-test-pypi.yml)
+ |coverage|
 
 
 Documentation
 =============
 
-See ``REQUIREMENTS`` in the `setup.py <https://github.com/divio/django-simple-sso/blob/master/setup.py>`_
-file for additional dependencies:
+See ``REQUIREMENTS`` in the [setup.py](https://github.com/Naudit/django-simple-sso/blob/master/setup.py) file for additional dependencies:
 
-|python| |django|
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/django-simple-sso.naudit)
+ |django|
 
 
 Django Simple SSO Specification (DRAFT)

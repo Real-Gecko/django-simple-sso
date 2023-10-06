@@ -46,7 +46,7 @@ setup(
     url='http://github.com/naudit/django-simple-sso',
     license='BSD-3-Clause',
     description='Simple SSO for Django',
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     packages=find_packages(),
     include_package_data=True,

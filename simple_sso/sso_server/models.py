@@ -2,7 +2,9 @@ from django.contrib.sessions.models import Session
 from django.db import models
 from django.utils import timezone
 from django.utils.deconstruct import deconstructible
+
 from simple_sso.settings import settings
+from simple_sso.sso_server.managers import TokenManager
 
 from ..utils import gen_secret_key
 
@@ -36,41 +38,37 @@ class TokenSecretKeyGenerator(SecretKeyGenerator):
 class Consumer(models.Model):
     name = models.CharField(max_length=255, unique=True)
     private_key = models.CharField(
-        max_length=64, unique=True,
-        default=ConsumerSecretKeyGenerator('private_key')
+        max_length=64, unique=True, default=ConsumerSecretKeyGenerator("private_key")
     )
     public_key = models.CharField(
-        max_length=64, unique=True,
-        default=ConsumerSecretKeyGenerator('public_key')
+        max_length=64, unique=True, default=ConsumerSecretKeyGenerator("public_key")
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def rotate_keys(self):
-        self.secret = ConsumerSecretKeyGenerator('private_key')()
-        self.key = ConsumerSecretKeyGenerator('public_key')()
+        self.secret = ConsumerSecretKeyGenerator("private_key")()
+        self.key = ConsumerSecretKeyGenerator("public_key")()
         self.save()
 
 
 class Token(models.Model):
     consumer = models.ForeignKey(
         Consumer,
-        related_name='tokens',
+        related_name="tokens",
         on_delete=models.CASCADE,
     )
     request_token = models.CharField(
-        unique=True, max_length=64,
-        default=TokenSecretKeyGenerator('request_token')
+        unique=True, max_length=64, default=TokenSecretKeyGenerator("request_token")
     )
     access_token = models.CharField(
-        unique=True, max_length=64,
-        default=TokenSecretKeyGenerator('access_token')
+        unique=True, max_length=64, default=TokenSecretKeyGenerator("access_token")
     )
     timestamp = models.DateTimeField(default=timezone.now)
     redirect_to = models.CharField(max_length=1023)
     user = models.ForeignKey(
-        getattr(settings, 'AUTH_USER_MODEL', 'auth.User'),
+        getattr(settings, "AUTH_USER_MODEL", "auth.User"),
         null=True,
         on_delete=models.CASCADE,
     )
@@ -80,6 +78,11 @@ class Token(models.Model):
         on_delete=models.CASCADE,
     )
 
+    objects = TokenManager()
+
     def refresh(self):
         self.timestamp = timezone.now()
         self.save()
+
+    def __str__(self):
+        return f"{self.timestamp}: {self.consumer} - {self.user}"

@@ -4,6 +4,7 @@ from urllib.parse import urlencode, urlparse, urlunparse
 from django.contrib import admin
 from django.contrib.admin.options import ModelAdmin
 from django.contrib.sessions.models import Session
+from django.core.exceptions import PermissionDenied
 from django.http import (
     HttpResponse,
     HttpResponseBadRequest,
@@ -13,6 +14,7 @@ from django.http import (
 )
 from django.urls import re_path, reverse
 from django.utils import timezone
+from django.views.defaults import permission_denied
 from django.views.generic.base import View
 from itsdangerous import URLSafeTimedSerializer
 from webservices.models import Provider
@@ -126,7 +128,7 @@ class AuthorizeView(View):
         return HttpResponseRedirect(url)
 
     def access_denied(self):
-        return HttpResponseForbidden("Access denied")
+        return permission_denied(self.request, PermissionDenied)
 
     def success(self):
         self.token.user = self.request.user
